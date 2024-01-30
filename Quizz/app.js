@@ -6,20 +6,12 @@ const q3 = document.getElementsByName("q3");
 const q4 = document.getElementsByName("q4");
 const q5 = document.getElementsByName("q5");
 const q6 = document.getElementsByName("q6");
+const h2 = document.querySelector("h2");
+const scoreNum = document.querySelector(".score");
+const info = document.querySelector(".info");
 let valeur = [];
-
-button.addEventListener("click", (e) => {
-  e.preventDefault();
-  collectResponse(q1);
-  collectResponse(q2);
-  collectResponse(q3);
-  collectResponse(q4);
-  collectResponse(q5);
-  collectResponse(q6);
-  compareTableau(reponses, valeur);
-  console.log(valeur);
-  valeur = [];
-});
+let scoreFinal = 0;
+let score = [];
 
 function collectResponse(q) {
   for (let i = 0; i < q.length; i++) {
@@ -28,9 +20,8 @@ function collectResponse(q) {
     }
   }
 }
-//il faut une fonction qui return les TRUE et les FALSE puis on va compter le nb de TRUE
+
 function compareTableau(tab1, tab2) {
-  let score = [];
   if (tab1.length !== tab2.length) {
     return false;
   }
@@ -40,16 +31,60 @@ function compareTableau(tab1, tab2) {
     } else {
       score.push(false);
     }
-    calculScore(score);
   }
+  return score;
 }
 
 function calculScore(tabScore) {
-  let scoreFinal = 0;
   for (let rep of tabScore) {
     if (rep === true) {
       scoreFinal += 1;
     }
-    console.log(scoreFinal);
   }
+  return scoreFinal;
 }
+
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  scoreFinal = 0;
+  score = [];
+  collectResponse(q1);
+  collectResponse(q2);
+  collectResponse(q3);
+  collectResponse(q4);
+  collectResponse(q5);
+  collectResponse(q6);
+  compareTableau(reponses, valeur);
+  calculScore(score);
+
+  if (scoreFinal < 6) {
+    h2.innerHTML = `\ud83d\ude09 Il y a ${6 - scoreFinal} erreurs \ud83d\ude09`;
+  } else {
+    h2.innerHTML = "Parfait !";
+  }
+
+  scoreNum.innerText = `Votre score est de ${scoreFinal} / 6`;
+  switch (scoreFinal) {
+    case 0:
+      info.innerText = "Baltringue !";
+      break;
+    case 1:
+      info.innerText = "T'es à fond là ?";
+      break;
+    case 2:
+      info.innerText = "Tu peux mieux faire...";
+      break;
+    case 3:
+      info.innerText = "Encore un effort !";
+      break;
+    case 4:
+      info.innerText = "Encore un effort !";
+      break;
+    case 5:
+      info.innerText = "Presque";
+      break;
+    default:
+      info.innerText = "Amazing !";
+  }
+  valeur = [];
+});
