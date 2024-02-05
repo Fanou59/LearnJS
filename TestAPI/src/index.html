@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/output.css" />
+    <title>Test API</title>
+</head>
+
+<body class="bg-orange-200">
+    <div class="container mx-auto my-4 text-center">
+        <h1 class="text-2xl uppercase tracking-widest">Recherche d'une ville</h1>
+        <form class="mt-4" action="">
+            <div>
+                <label class="mr-2 text-lg" for="codePostal">Quel est le code postal ?</label>
+                <input id="codePostal" class="rounded-lg px-4 py-2" type="number" />
+            </div>
+            <div class="mt-2">
+                <label class="mr-2 text-lg" for="country">Drapeau d'un pays : </label>
+                <input id="country" class="rounded-lg px-4 py-2 uppercase" type="text" />
+            </div>
+        </form>
+    </div>
+    <div class="container mx-auto my-4 flex min-h-64 items-center justify-center rounded-lg bg-orange-100 py-3">
+        <p class="text-center text-4xl font-extrabold uppercase leading-loose tracking-wider" id="ville"></p>
+    </div>
+    <div>
+        <p class="m-4 bg-slate-500 py-5 text-center text-2xl font-thin tracking-tighter">
+            Je fais un test de paragraphe
+        </p>
+    </div>
+
+    <div class="container mx-auto my-4 flex min-h-64 items-center justify-center rounded-lg bg-orange-100 py-3">
+        <img src="" id="pays" />
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
